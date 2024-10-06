@@ -1,0 +1,48 @@
+<form [formGroup]="formularioRegistro" (ngSubmit)="onSubmit()" aria-labelledby="form-title" role="form">
+  <fieldset>
+    <legend id="form-title">Registro</legend>
+
+    <div>
+      <label for="nombreCompleto">
+        Nombre Completo: <span class="color-contraste">*</span>
+      </label>
+      <input
+      id="nombreCompleto"
+      formControlName="nombreCompleto"
+      required
+      aria-describedby="nombreError"
+      (blur)="obtenerErrorNombre()" />
+      <div *ngIf="obtenerErrorNombre()" id="nombreError" role="alert">{{ obtenerErrorNombre() }}</div>
+    </div>
+
+    <div>
+      <label for="correoElectronico">
+        Correo Electrónico: <span class="color-contraste">*</span>
+      </label>
+      <input
+      id="correoElectronico"
+      type="email"
+      formControlName="correoElectronico"
+      required
+      aria-describedby="correoError"
+      (blur)="obtenerErrorCorreo()" />
+      <div *ngIf="obtenerErrorCorreo()" style="color:#721c24" id="correoError" role="alert">{{ obtenerErrorCorreo() }}</div>
+    </div>
+
+    <div>
+      <label for="contrasena">
+        Contraseña: <span class="color-contraste">*</span>
+      </label>
+      <input
+      id="contrasena"
+      type="password"
+      formControlName="contrasena"
+      required
+      aria-describedby="contrasenaError"
+      (blur)="obtenerErrorContrasena()" />
+      <div *ngIf="obtenerErrorContrasena()" style="color:#721c24" id="contrasenaError" role="alert">{{ obtenerErrorContrasena() }}</div>
+    </div>
+
+    <button type="submit" [disabled]="formularioRegistro.invalid">Enviar</button>
+  </fieldset>
+</form>
